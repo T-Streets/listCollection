@@ -5,7 +5,7 @@ export default class AddLists extends Component {
     constructor(props){
         super(props)
         this.defaultState = {
-            listName: '',
+            listname: '',
             items: []
         }
 
@@ -16,19 +16,19 @@ export default class AddLists extends Component {
         submitHandler: PropTypes.func.isRequired
     }
 
-    handleChange = (e) => {
-        const name = e.target.name
-        const value = e.target.value
+    handleChange = e => {
+        let listname = e.target.name
+        let value = e.target.value
 
-       /*  this.setState((prevState) => {
-            state = {}
-            state[name] = value
+        this.setState((prevState) => {
+           const state = {}
+            state[listname] = value
             return state
-        }) */
+        })
         
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = e => {
         e.preventDefault()
         this.props.submitHandler(this.state)
         this.setState(Object.assign({}, this.defaultState))
@@ -36,10 +36,12 @@ export default class AddLists extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input name='listname' type='text' value={this.state.listName} onChange={this.handleChange} />
-                <button type='submit'>Submit</button>
-            </form>
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <input listname='listname' type='text' value={this.state.listName} onChange={this.handleChange} />
+                    <button type='submit'>Add List</button>
+                </form>
+            </div>
         )
     }
 
