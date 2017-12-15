@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import DisplayItems from './DisplayItems'
 
 export default class AddLists extends Component {
     constructor(props){
         super(props)
         this.defaultState = {
-            listname: '',
+            listname: this.props.listname,
             items: []
         }
 
@@ -17,7 +18,7 @@ export default class AddLists extends Component {
     }
 
     handleChange = e => {
-        let listname = e.target.name
+        let listname = e.target.listname
         let value = e.target.value
 
         this.setState((prevState) => {
@@ -41,6 +42,7 @@ export default class AddLists extends Component {
                     <input listname='listname' type='text' value={this.state.listName} onChange={this.handleChange} />
                     <button type='submit'>Add List</button>
                 </form>
+                
             </div>
         )
     }

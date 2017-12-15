@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import AddLists from './AddLists'
-import DisplayLists from './DisplayLists'
+import DisplayItems from './DisplayItems'
 
 export default class ListCollection extends Component {
    constructor() {
        super()
         this.state = {
+            listname: '',
             items: [],
             counter: 0
             }
@@ -51,7 +52,11 @@ export default class ListCollection extends Component {
                 <ul>
                     {
                         this.state.items.map(items => {
-                            return <DisplayLists key={items.counter} id={items.counter} deleteList={this.deleteList} />
+                            return(
+                            <DisplayItems key={items.counter} id={items.counter} listname={this.listname} />
+                            )
+        
+                            
                         })
                     }
                 </ul>

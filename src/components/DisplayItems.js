@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import AddLists from './AddLists'
 import AddItem from './AddItem'
-import DisplayItem from './DisplayItem'
 
-export default class DisplayLists extends Component {
+
+
+export default class DisplayItems extends Component {
     constructor(props){
         super(props)
 
         this.state = {
-            listname: this.props.listname,
+            listname: this.props,
             items: [],
             counter: 0,
         }
@@ -20,7 +21,11 @@ export default class DisplayLists extends Component {
                 id: prevState.counter,
                 text: text,
                 complete: false,
-
+                counter: prevState.counter +1,
+            }
+            return {
+                items: prevState.items.concat(text),
+                counter: prevState.counter + 1
             }
         })
     }
@@ -34,16 +39,16 @@ export default class DisplayLists extends Component {
     }
     
     render() {
-        console.log(this.state.listname)
+        
         return(
             <div>
+                
                 <AddItem onSubmit={this.addItem} />
-                <button onClick={this.deleteItem}>Delete</button>
-                    <ul>
-                       {this.state.items.map(items => {
-                           return <DisplayItem listname={this.listname} />
-                       })} 
-                    </ul>
+                <ul>
+                    {this.state.items}
+                </ul>
+
+                      
             </div>
         )
     }
